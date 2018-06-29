@@ -10,6 +10,8 @@ function listCtrl($scope, $http) {
         console.log("加载失败：" + resp.status);
     });
 
+    $scope.orderProp = "-votes"; //默认按票数降序排列
+
     //删除
     $scope.removePlayer = function (ev, id) {
         ev.preventDefault();
@@ -41,9 +43,9 @@ function addCtrl($scope, $http, $location, fifaService) {
                 $scope.isExisted = true;
             } else {
                 $http.post("/backend/actionUrl", $scope.player).then(function (resp) {
-                    $location.path("#/list");
+                    $location.path("#/player/list");
                 }, function (resp) {
-                    $location.path("#/list");
+                    $location.path("#/player/list");
                 });
             }
         });
@@ -73,10 +75,10 @@ function editCtrl($scope, $http, $location, $routeParams) {
     $scope.submitForm = function () {
         $http.post("/backend/actionUrl", $scope.player).then(function (resp) {
             //成功
-            $location.path("#/list");
+            $location.path("#/player/list");
         }, function (resp) {
             //失败
-            $location.path("#/list");
+            $location.path("#/player/list");
         });
     };
 }
