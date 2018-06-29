@@ -1,0 +1,88 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>list</title>-->
+    <!--<link rel="stylesheet" href="../frame/bootstrap-3.3.7/bootstrap.css">-->
+    <!--<link rel="stylesheet" href="../css/app.css">-->
+
+    <!--<script src="../frame/jquery-3.3.1.js"></script>-->
+    <!--<script src="../frame/bootstrap-3.3.7/bootstrap.js"></script>-->
+<!--</head>-->
+<!--<body class="background-gray">-->
+
+    <div class="content-margin-padding">
+        <!--操作栏-->
+        <form class="form-inline" role="form">
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label class="control-label">Search: </label>
+                    <input type="text" class="form-control" placeholder="请输入搜索内容"
+                           ng-model="queryVal" style="width: 100%">
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label class="control-label">Order By: </label>
+                    <select class="form-control" ng-model="orderProp" style="width: 100%;">
+                        <option value="-votes">进球数</option>
+                        <option value="name">姓 名</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+
+        <div class="margin-top20">
+            <p>
+                <a href="#/add" class="btn btn-primary">添加射手</a>
+            </p>
+
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>头像</th>
+                            <th>姓名</th>
+                            <th>位置</th>
+                            <th>号码</th>
+                            <th>球队</th>
+                            <th>进球数</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr ng-repeat="player in players | filter: queryVal | orderBy: orderProp">
+                            <td>
+                                <img src="imgs/players/{{player.thumb}}" alt="暂无图片"
+                                     class="img-thumbnail img-size">
+                            </td>
+                            <td>
+                                <a href="#/view/{{player.id}}">{{player.name}}</a>
+                            </td>
+                            <td>{{player.position}}</td>
+                            <td>{{player.num}}</td>
+                            <td>{{player.team}}</td>
+                            <td>{{player.votes}}</td>
+                            <td>
+                                <a href="#/edit/{{player.id}}">编辑</a>
+                                <a href="#" ng-click="removePlayer($even,player.id)">删除</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+<!--</body>-->
+<!--<script src="../frame/angular-1.7.0/angular.js"></script>-->
+<!--<script src="../frame/angular-1.7.0/angular-route.js"></script>-->
+<!--<script src="../frame/angular-1.7.0/angular-animate.js"></script>-->
+
+<!--<script src="../js/app.js"></script>-->
+<!--<script src="../js/service/fifaServices.js"></script>-->
+<!--<script src="../js/filter/fifaFilters.js"></script>-->
+<!--<script src="../js/directive/fifaDirectives.js"></script>-->
+<!--<script src="../js/controller/fifaControllers.js"></script>-->
+<!--</html>-->

@@ -1,0 +1,35 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>view</title>-->
+    <!--<link rel="stylesheet" href="../frame/bootstrap-3.3.7/bootstrap.css">-->
+    <!--<link rel="stylesheet" href="../css/app.css">-->
+
+    <!--<script src="../frame/jquery-3.3.1.js"></script>-->
+    <!--<script src="../frame/bootstrap-3.3.7/bootstrap.js"></script>-->
+<!--</head>-->
+<!--<body class="background-gray">-->
+
+    <div class="content-margin-padding content-center">
+        <p>
+            <img src="imgs/players/{{player.thumb}}" alt="暂无图片"
+                 ng-click="getThumb(player.thumb)">
+        </p>
+
+        <h3>姓名: {{player.name}}</h3>
+        <p>位置: {{player.position}}</p>
+        <p>号码: {{player.num}}</p>
+        <p>球队: {{player.team}}</p>
+        <p>进球数: {{player.votes}}</p>
+
+        <p>
+            <button class="btn btn-primary" ng-disabled="isVoted"
+                    ng-click="vote()">{{voteBtnText}}
+            </button>
+            <a href="#/list" class="btn btn-default">返回</a>
+        </p>
+    </div>
+
+<!--</body>-->
+<!--</html>-->
