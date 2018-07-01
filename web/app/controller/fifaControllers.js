@@ -4,7 +4,7 @@
 
 //list controller
 function listCtrl($scope, $http) {
-    $http.get("data/players.json").then(function (resp) {
+    $http.get("data/players2.json").then(function (resp) {
         $scope.players = resp.data;
     }, function (resp) {
         console.log("加载失败：" + resp.status);
@@ -25,16 +25,28 @@ function listCtrl($scope, $http) {
 
 //add controller
 function addCtrl($scope, $http, $location, fifaService) {
+    // //初始化位置信息
+    // $scope.positions = [
+    //     {val: "PG", txt: "控球后卫"},
+    //     {val: "SG", txt: "得分后卫"},
+    //     {val: "SF", txt: "小前锋"},
+    //     {val: "PF", txt: "大前锋"},
+    //     {val: "C", txt: "中锋"}
+    // ];
+    // //初始化球队信息
+    // $scope.teams = ["骑士", "勇士", "尼克斯", "快船", "火箭", "篮网", "公牛", "雷霆"];
+
     //初始化位置信息
     $scope.positions = [
-        {val: "PG", txt: "控球后卫"},
-        {val: "SG", txt: "得分后卫"},
-        {val: "SF", txt: "小前锋"},
-        {val: "PF", txt: "大前锋"},
-        {val: "C", txt: "中锋"}
+        {val: "FW", txt: "前锋"},
+        {val: "CMF", txt: "中前卫"},
+        {val: "DMF", txt: "后腰"},
+        {val: "SB", txt: "边后卫"},
+        {val: "CB", txt: "中后卫"},
+        {val: "GK", txt: "门将"}
     ];
     //初始化球队信息
-    $scope.teams = ["骑士", "勇士", "尼克斯", "快船", "火箭", "篮网", "公牛", "雷霆"];
+    $scope.teams = ["英格兰", "葡萄牙", "西班牙", "比利时", "俄罗斯", "法国", "突尼斯", "乌拉圭"];
 
     //提交表单
     $scope.submitForm = function () {
@@ -54,19 +66,31 @@ function addCtrl($scope, $http, $location, fifaService) {
 
 //edit controller
 function editCtrl($scope, $http, $location, $routeParams) {
+    // //初始化位置信息
+    // $scope.positions = [
+    //     {val: "PG", txt: "控球后卫"},
+    //     {val: "SG", txt: "得分后卫"},
+    //     {val: "SF", txt: "小前锋"},
+    //     {val: "PF", txt: "大前锋"},
+    //     {val: "C", txt: "中锋"}
+    // ];
+    // //初始化球队信息
+    // $scope.teams = ["骑士", "勇士", "尼克斯", "快船", "火箭", "篮网", "公牛", "雷霆"];
+
     //初始化位置信息
     $scope.positions = [
-        {val: "PG", txt: "控球后卫"},
-        {val: "SG", txt: "得分后卫"},
-        {val: "SF", txt: "小前锋"},
-        {val: "PF", txt: "大前锋"},
-        {val: "C", txt: "中锋"}
+        {val: "FW", txt: "前锋"},
+        {val: "CMF", txt: "中前卫"},
+        {val: "DMF", txt: "后腰"},
+        {val: "SB", txt: "边后卫"},
+        {val: "CB", txt: "中后卫"},
+        {val: "GK", txt: "门将"}
     ];
     //初始化球队信息
-    $scope.teams = ["骑士", "勇士", "尼克斯", "快船", "火箭", "篮网", "公牛", "雷霆"];
+    $scope.teams = ["英格兰", "葡萄牙", "西班牙", "比利时", "俄罗斯", "法国", "突尼斯", "乌拉圭"];
 
     //获取被编辑的球员信息
-    $http.get("data/players.json").success(function (data) {
+    $http.get("data/players2.json").success(function (data) {
         var i = parseInt($routeParams.playerId) - 1;
         $scope.player = data [i];
     });
@@ -85,7 +109,7 @@ function editCtrl($scope, $http, $location, $routeParams) {
 
 //view controller
 function viewCtrl($scope, $http, $routeParams) {
-    $http.get("data/players.json").success(function (data) {
+    $http.get("data/players2.json").success(function (data) {
         var i = parseInt($routeParams.playerId) - 1;
         $scope.player = data[i];
         if ($routeParams.playerName) {

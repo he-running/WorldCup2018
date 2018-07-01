@@ -4,7 +4,7 @@
 //自定义service
 angular.module("fifaApp").service("fifaService",["$q", "$http", function ($q,$http) {
     this.getPlayerNames = function () {
-        return $http.get("data/players.json").then(function (resp) {
+        return $http.get("data/players2.json").then(function (resp) {
            if (typeof resp.data === "object") {
                var playerNames = [];
                angular.forEach(resp.data,function (val, key) {

@@ -1,0 +1,12 @@
+[
+	{"id":"1", "num":7, "name":"C-罗纳尔多", "position":"FW", "team":"葡萄牙", "thumb":"C-罗纳尔多.png", "votes":4},
+	{"id":"2", "num":22, "name":"久巴", "position":"FW", "team":"俄罗斯", "thumb":"久巴.png", "votes":2},
+	{"id":"3", "num":9, "name":"凯恩", "position":"FW", "team":"英格兰", "thumb":"凯恩.png", "votes":5},
+	{"id":"4", "num":3, "name":"切里舍夫", "position":"CMF", "team":"俄罗斯", "thumb":"切里舍夫.png", "votes":3},
+	{"id":"5", "num":21, "name":"卡瓦尼", "position":"FW", "team":"乌拉圭", "thumb":"卡瓦尼.png", "votes":3},
+	{"id":"6", "num":9, "name":"卢卡库", "position":"FW", "team":"比利时", "thumb":"卢卡库.png", "votes":4},
+	{"id":"7", "num":10, "name":"哈兹里", "position":"FW", "team":"突尼斯", "thumb":"哈兹里.png", "votes":2},
+	{"id":"8", "num":10, "name":"姆巴佩", "position":"FW", "team":"法国", "thumb":"姆巴佩.png", "votes":3},
+	{"id":"9", "num":19, "name":"迭戈-科斯塔", "position":"FW", "team":"西班牙", "thumb":"迭戈-科斯塔.png", "votes":3},
+	{"id":"10", "num":10, "name":"阿扎尔", "position":"FW", "team":"比利时", "thumb":"阿扎尔.png", "votes":2}
+]

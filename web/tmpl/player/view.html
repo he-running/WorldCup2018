@@ -13,12 +13,12 @@
 
     <div class="content-margin-padding content-center">
         <p>
-            <img ng-src="static/img/players/{{player.thumb}}" alt="暂无图片"
-                 ng-click="getThumb(player.thumb)">
+            <img ng-src="static/img/players2/{{player.thumb}}" alt="暂无图片"
+                 ng-click="getThumb(player.thumb)" class="img-circle">
         </p>
 
         <h3>姓名: {{player.name}}</h3>
-        <p>位置: {{player.position}}</p>
+        <p>位置: {{player.position | posFilter}}</p>
         <p>号码: {{player.num}}</p>
         <p>球队: {{player.team}}</p>
         <p>进球数: {{player.votes}}</p>
