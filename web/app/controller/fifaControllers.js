@@ -25,17 +25,6 @@ function listCtrl($scope, $http) {
 
 //add controller
 function addCtrl($scope, $http, $location, fifaService) {
-    // //初始化位置信息
-    // $scope.positions = [
-    //     {val: "PG", txt: "控球后卫"},
-    //     {val: "SG", txt: "得分后卫"},
-    //     {val: "SF", txt: "小前锋"},
-    //     {val: "PF", txt: "大前锋"},
-    //     {val: "C", txt: "中锋"}
-    // ];
-    // //初始化球队信息
-    // $scope.teams = ["骑士", "勇士", "尼克斯", "快船", "火箭", "篮网", "公牛", "雷霆"];
-
     //初始化位置信息
     $scope.positions = [
         {val: "FW", txt: "前锋"},
@@ -66,17 +55,6 @@ function addCtrl($scope, $http, $location, fifaService) {
 
 //edit controller
 function editCtrl($scope, $http, $location, $routeParams) {
-    // //初始化位置信息
-    // $scope.positions = [
-    //     {val: "PG", txt: "控球后卫"},
-    //     {val: "SG", txt: "得分后卫"},
-    //     {val: "SF", txt: "小前锋"},
-    //     {val: "PF", txt: "大前锋"},
-    //     {val: "C", txt: "中锋"}
-    // ];
-    // //初始化球队信息
-    // $scope.teams = ["骑士", "勇士", "尼克斯", "快船", "火箭", "篮网", "公牛", "雷霆"];
-
     //初始化位置信息
     $scope.positions = [
         {val: "FW", txt: "前锋"},

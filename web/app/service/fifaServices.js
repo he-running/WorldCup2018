@@ -9,7 +9,8 @@ angular.module("fifaApp").service("fifaService",["$q", "$http", function ($q,$ht
                var playerNames = [];
                angular.forEach(resp.data,function (val, key) {
                    console.log("第"+key+"个名字："+val.name);
-                   playerNames.push(val.name.toLowerCase());
+                   // playerNames.push(val.name.toLowerCase());
+                   playerNames.push(val.name);
                });
                return playerNames;
            } else {
