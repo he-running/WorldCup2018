@@ -3,4 +3,15 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+    <servlet>
+        <servlet-name>playerServlet</servlet-name>
+        <servlet-class>com.test.demo.PlayerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>playerServlet</servlet-name>
+        <url-pattern>/playerServlet</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

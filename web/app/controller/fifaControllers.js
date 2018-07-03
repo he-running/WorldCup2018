@@ -86,7 +86,7 @@ function editCtrl($scope, $http, $location, $routeParams) {
 }
 
 //view controller
-function viewCtrl($scope, $http, $routeParams) {
+function viewCtrl($scope, $http, $routeParams, fifaService) {
     $http.get("data/players2.json").success(function (data) {
         var i = parseInt($routeParams.playerId) - 1;
         $scope.player = data[i];
@@ -104,7 +104,34 @@ function viewCtrl($scope, $http, $routeParams) {
     $scope.voteBtnText = "投票";
     $scope.vote = function () {
         $scope.player.votes = $scope.player.votes + 1;
-        $scope.voteBtnText = "已投票";
-        $scope.isVoted = true;
+        // $scope.voteBtnText = "已投票";
+        // $scope.isVoted = true;
+
+        var playerBoy = {
+            id: "1",
+            name: "",
+            position: "",
+            num: "",
+            team: "",
+            score: "",
+            imgUrl: ""
+        }
+
+        var players = [];
+
+        fifaService.queryById(playerBoy).then(function (resp) {
+            if (resp.data.isSuccess) {
+                //成功
+                players = angular.fromJson(resp.data.data);
+                console.log(players.length);
+            } else {
+                //数据无效
+                console.log(resp.data.msg);
+            }
+        }, function (resp) {
+            //错误
+        });
     };
+
+
 }
