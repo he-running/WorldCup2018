@@ -8,7 +8,7 @@ function listCtrl($scope, $http, $location, fifaService) {
 
     //初始化数据
     fifaService.queryAll().then(function (resp) {
-        if (resp.data.isSuccess) {
+        if (resp.data.success) {
             $scope.players = angular.fromJson(resp.data.data);
         } else {
             //数据无效
@@ -25,7 +25,7 @@ function listCtrl($scope, $http, $location, fifaService) {
     $scope.removePlayer = function (ev, player) {
         ev.preventDefault();
         fifaService.deleteData(player).then(function (resp) {
-            if (resp.data.isSuccess) {
+            if (resp.data.success) {
                 console.log("删除成功");
                 $location.path("#/player/list");//更新
             } else {
@@ -57,14 +57,46 @@ function addCtrl($scope, $http, $location, fifaService) {
         {val: "GK", txt: "门将"}
     ];
 
+    fifaService.queryAll().then(function (resp) {
+        if (resp.data.success) {
+            $scope.players = angular.fromJson(resp.data.data);
+        } else {
+            //数据无效
+            $scope.players = null;
+            console.log("数据无效：" + resp.data.msg);
+        }
+    }, function (resp) {
+        //失败
+        $scope.players = null;
+        console.log("加载失败：" + resp.status);
+    });
+
+    $scope.isExisted = function () {
+        angular.forEach($scope.players,function (val,key) {
+           if (val.name == $scope.player.name) {
+               return true;
+           }
+        });
+        return false;
+    };
+
     //提交表单
+    $scope.addSuccess = false;
+    $scope.addFinished = false;
     $scope.submitForm = function () {
         fifaService.saveData($scope.player).then(function (resp) {
-            console.log("新建成功 ？: " + resp.data.isSuccess);
-            $location.path("#/player/list");
+            //success
+            if (resp.data.success) {
+                $scope.addSuccess = true;
+            } else {
+                //无效
+                $scope.addSuccess = false;
+            }
+            $scope.addFinished = true;
         }, function (resp) {
-            console.log("新建失败");
-            $location.path("#/player/list");
+            //error
+            $scope.addSuccess = false;
+            $scope.addFinished = true;
         });
     };
 }
@@ -81,68 +113,104 @@ function editCtrl($scope, $http, $location, $routeParams, fifaService) {
         {val: "GK", txt: "门将"}
     ];
 
-    //获取被编辑的球员信息
-    $scope.player = $scope.players[$routeParams.player.id];
+    //初始化
+    $scope.player = {
+        id: $routeParams.playerId,
+        name: "",
+        position: "",
+        num: "",
+        team: "",
+        score: "",
+        imgUrl: ""
+    };
+
+    fifaService.queryById($scope.player).then(function (resp) {
+        if (resp.data.success) {
+            //成功
+            $scope.player = angular.fromJson(resp.data.data);
+            console.log($scope.player.name);
+        } else {
+            //数据无效
+            console.log(resp.data.msg);
+        }
+    }, function (resp) {
+        //错误
+        console.log(resp.status);
+    });
 
     //提交表单
+    $scope.updateSuccess = false;
+    $scope.updateFinished = false;
     $scope.submitForm = function () {
         fifaService.updaData($scope.player).then(function (resp) {
-            if (resp.data.isSuccess) {
-                console.log("更新成功");
+            //success
+            if (resp.data.success) {
+                $scope.updateSuccess = true;
             } else {
-                console.log("更新失败");
+                //无效
+                $scope.updateSuccess = false;
             }
+            $scope.updateFinished = true;
+        }, function (resp) {
+            //error
+            $scope.updateSuccess = false;
+            $scope.updateFinished = true;
         });
     };
+
 }
 
 //view controller
 function viewCtrl($scope, $http, $routeParams, fifaService) {
-    $http.get("data/players2.json").success(function (data) {
-        var i = parseInt($routeParams.playerId) - 1;
-        $scope.player = data[i];
-        if ($routeParams.playerName) {
-            console.log("接收到球员名字： " + $routeParams.playerName);
+    //初始化
+    $scope.player = {
+        id: $routeParams.playerId,
+        name: "",
+        position: "",
+        num: "",
+        team: "",
+        score: "",
+        imgUrl: ""
+    };
+
+    fifaService.queryById($scope.player).then(function (resp) {
+        if (resp.data.success) {
+            //成功
+            $scope.player = angular.fromJson(resp.data.data);
+            console.log($scope.player.name);
+        } else {
+            //数据无效
+            console.log(resp.data.msg);
         }
+    }, function (resp) {
+        //错误
+        console.log(resp.status);
     });
 
-    //获取头像图片名称
-    $scope.getThumb = function (playerThumb) {
-        console.log("获取头像照片名称：" + playerThumb);
-    };
-
-    //投票
-    $scope.voteBtnText = "投票";
-    $scope.vote = function () {
-        $scope.player.score = $scope.player.score + 1;
-        // $scope.voteBtnText = "已投票";
-        // $scope.isVoted = true;
-
-        var playerBoy = {
-            id: "1",
-            name: "",
-            position: "",
-            num: "",
-            team: "",
-            score: "",
-            imgUrl: ""
-        };
-
-        var players = [];
-
-        fifaService.queryById(playerBoy).then(function (resp) {
-            if (resp.data.isSuccess) {
-                //成功
-                players = angular.fromJson(resp.data.data);
-                console.log(players.length);
+    //添加进球
+    $scope.shootSuccess = false;
+    $scope.shootFinished = false;
+    $scope.scoreBtnText = "进球+";
+    $scope.score = function () {
+        $scope.player.score = parseInt($scope.player.score) + 1;
+        $scope.scoreBtnText = "射门...";
+        fifaService.updaData($scope.player).then(function (resp) {
+            //success
+            $scope.scoreBtnText = "进球+";
+            if (resp.data.success) {
+                $scope.shootSuccess = true;
             } else {
-                //数据无效
-                console.log(resp.data.msg);
+                //无效
+                $scope.shootSuccess = false;
             }
+            $scope.shootFinished = true;
         }, function (resp) {
-            //错误
+            //error
+            $scope.scoreBtnText = "进球+";
+            $scope.shootSuccess = false;
+            $scope.shootFinished = true;
+            // window.alert("进球无效！");
         });
     };
-
 
 }

@@ -15,7 +15,7 @@
 <div class="content-margin-padding">
     <form name="playerForm" class="form-horizontal" role="form" novalidate autocomplete="off">
         <fieldset>
-            <legend>编辑球员信息 -# {{player.id}}</legend>
+            <legend>编辑球员信息 -- {{player.name}}</legend>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label">姓名</label>
@@ -43,8 +43,8 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">位置</label>
                 <div class="col-sm-9">
-                    <select class="form-control" name="position" ng-model="player.position" required>
-                        <option>选择位置</option>
+                    <select class="form-control" name="position" ng-model="player.position" required="">
+                        <option value="" style="display:none">请选择球员位置</option>
                         <option ng-repeat="pos in positions" value="{{pos.val}}">{{pos.txt}}</option>
                     </select>
                     <span class="text-danger" ng-show="playerForm.position.$touched && playerForm.position.$invalid">
@@ -88,6 +88,12 @@
             </div>
         </fieldset>
     </form>
+
+    <div class="alert" ng-class="{'alert-success':updateSuccess == true,
+            'alert-warning':updateSuccess != true}" ng-show="updateFinished">
+        <a href="#" class="close" data-dismiss="alert" aria-hidden="true">&times;</a>
+        <span>更新{{updateSuccess ? '成功':'失败'}}！</span>
+    </div>
 </div>
 <!--</body>-->
 <!--<script src="../frame/angular-1.7.0/angular.js"></script>-->

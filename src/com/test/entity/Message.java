@@ -6,16 +6,16 @@ package com.test.entity;
  */
 public class Message<T> {
 
-    private boolean isSuccess;//状态
+    private boolean success;//状态
     private String msg;//消息说明
     private T data;//json数据体
 
     public boolean isSuccess() {
-        return isSuccess;
+        return success;
     }
 
     public void setSuccess(boolean success) {
-        isSuccess = success;
+        this.success = success;
     }
 
     public String getMsg() {

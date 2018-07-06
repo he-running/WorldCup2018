@@ -13,8 +13,7 @@
 
     <div class="content-margin-padding content-center">
         <p>
-            <img ng-src="{{player.imgUrl}}" alt="暂无图片"
-                 ng-click="getThumb(player.thumb)" class="img-circle">
+            <img ng-src="{{player.imgUrl}}" class="img-circle" alt="暂无图片">
         </p>
 
         <h3>姓名: {{player.name}}</h3>
@@ -24,11 +23,15 @@
         <p>进球数: {{player.score}}</p>
 
         <p>
-            <button class="btn btn-primary" ng-disabled="isVoted"
-                    ng-click="vote()">{{voteBtnText}}
-            </button>
+            <button class="btn btn-primary" ng-click="score()">{{scoreBtnText}}</button>
             <a href="#/player/list" class="btn btn-default">返回</a>
         </p>
+
+        <div class="alert" ng-class="{'alert-success':shootSuccess == true,
+            'alert-warning':shootSuccess != true}" ng-show="shootFinished">
+            <a href="#" class="close" data-dismiss="alert" aria-hidden="true">&times;</a>
+            <span>进球{{shootSuccess ? '成功':'无效'}}！</span>
+        </div>
     </div>
 
 <!--</body>-->
