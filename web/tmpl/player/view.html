@@ -13,7 +13,7 @@
 
     <div class="content-margin-padding content-center">
         <p>
-            <img ng-src="static/img/players2/{{player.thumb}}" alt="暂无图片"
+            <img ng-src="{{player.imgUrl}}" alt="暂无图片"
                  ng-click="getThumb(player.thumb)" class="img-circle">
         </p>
 
@@ -21,7 +21,7 @@
         <p>位置: {{player.position | posFilter}}</p>
         <p>号码: {{player.num}}</p>
         <p>球队: {{player.team}}</p>
-        <p>进球数: {{player.votes}}</p>
+        <p>进球数: {{player.score}}</p>
 
         <p>
             <button class="btn btn-primary" ng-disabled="isVoted"
@@ -32,4 +32,7 @@
     </div>
 
 <!--</body>-->
+<!--<script src="../frame/angular-1.7.0/angular.js"></script>-->
+<!--<script src="../frame/angular-1.7.0/angular-route.js"></script>-->
+<!--<script src="../frame/angular-1.7.0/angular-animate.js"></script>-->
 <!--</html>-->

@@ -45,15 +45,25 @@ public class PlayerServlet extends HttpServlet {
             String json = req.getParameter("jsondata");//使用json传递数据
             Player player = gson.fromJson(json, Player.class);
 
-            String id = player.getId()+"";
-            String name = player.getName();
-            String position = player.getPosition();
-            String num = player.getNum();
-            String team = player.getTeam();
-            String score = player.getScore();
-            String imgUrl = player.getImgUrl();
+            String id = "";
+            String name = "";
+            String position = "";
+            String num = "";
+            String team = "";
+            String score = "";
+            String imgUrl = "";
+            if (player != null) {
+                id = player.getId() + "";
+                name = player.getName();
+                position = player.getPosition();
+                num = player.getNum();
+                team = player.getTeam();
+                score = player.getScore();
+                imgUrl = player.getImgUrl();
+            }
+
             //根据操作类型，进行相应的数据库CRUD
-            message=new Message();
+            message = new Message();
             switch (opeType) {
                 case "1":
                     //新建

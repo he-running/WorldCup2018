@@ -62,7 +62,7 @@ public class PlayerDaoTest {
         try {
             initConn();
             Player player = new Player();
-            player.setId(Integer.parseInt(id));
+            player.setId(id);
             player.setName(name);
             player.setPosition(position);
             player.setNum(num);
@@ -98,7 +98,7 @@ public class PlayerDaoTest {
 
             while (rs.next()) {
                 Player player = new Player();
-                player.setId(rs.getInt("id"));
+                player.setId(rs.getInt("id")+"");
                 player.setName(rs.getString("name"));
                 player.setPosition(rs.getString("position"));
                 player.setNum(rs.getString("num"));
@@ -123,7 +123,7 @@ public class PlayerDaoTest {
             ResultSet rs = playerDao.queryById(conn,id);
 
             if (rs.first()) {
-                player.setId(rs.getInt("id"));
+                player.setId(rs.getInt("id")+"");
                 player.setName(rs.getString("name"));
                 player.setPosition(rs.getString("position"));
                 player.setNum(rs.getString("num"));

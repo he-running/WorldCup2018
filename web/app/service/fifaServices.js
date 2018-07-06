@@ -25,41 +25,66 @@ angular.module("fifaApp").service("fifaService", ["$q", "$http", function ($q, $
         });
     };
 
-    //保存数据
+    //保存新数据
     this.saveData = function (player) {
-        //全都使用键值对传输
-
-        //使用json传输
-        var opeType = "1";
-        var jsondata = player.toJSON();
-
-        $http({
-            method: 'POST',
+        var data = {
+            opeType: '1',
+            jsondata: angular.toJson(player)
+        };
+        return $http({
+            method: 'post',
             url: 'playerServlet',
-            data: {
-                opeType: opeType,
-                jsonData: jsondata
-            }
-        }).then(function (resp) {
-            //返回成功
-            if (resp.data.success) {
-                console.log("成功");
-            } else {
-                console.log("数据无效");
-            }
-        }, function (resp) {
-            //失败
-            console.log("失败：" + resp.status);
+            data: $.param(data)
+        });
+    };
+
+    //更新数据
+    this.updaData = function (player) {
+        var data = {
+            opeType: '2',
+            jsondata: angular.toJson(player)
+        };
+        return $http({
+            method: 'post',
+            url: 'playerServlet',
+            data: $.param(data)
+        });
+    };
+
+    //删除数据
+    this.deleteData = function (player) {
+        var data = {
+            opeType: '3',
+            jsondata: angular.toJson(player)
+        };
+        return $http({
+            method: 'post',
+            url: 'playerServlet',
+            data: $.param(data)
+        });
+    };
+
+    //查找全部数据
+    this.queryAll = function () {
+        var data = {
+            opeType: '4',
+            jsondata: ''
+        };
+        return $http({
+            method: 'post',
+            url: 'playerServlet',
+            data: $.param(data),
+            cache:true
         });
     };
 
     //查询数据单条数据
     this.queryById = function (player) {
         var data = {
-            opeType: "5",
+            opeType: '5',
             jsondata: angular.toJson(player)
         };
-       return $http({
+        return $http({
             method: 'post',
             url: 'playerServlet',
             data: $.param(data)

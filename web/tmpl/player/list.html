@@ -1,85 +1,80 @@
 <!--<!DOCTYPE html>-->
 <!--<html lang="en">-->
 <!--<head>-->
-    <!--<meta charset="UTF-8">-->
-    <!--<title>list</title>-->
-    <!--<link rel="stylesheet" href="../frame/bootstrap-3.3.7/bootstrap.css">-->
-    <!--<link rel="stylesheet" href="../css/app.css">-->
+<!--<meta charset="UTF-8">-->
+<!--<title>list</title>-->
+<!--<link rel="stylesheet" href="../frame/bootstrap-3.3.7/bootstrap.css">-->
+<!--<link rel="stylesheet" href="../css/app.css">-->
 
-    <!--<script src="../frame/jquery-3.3.1.js"></script>-->
-    <!--<script src="../frame/bootstrap-3.3.7/bootstrap.js"></script>-->
+<!--<script src="../frame/jquery-3.3.1.js"></script>-->
+<!--<script src="../frame/bootstrap-3.3.7/bootstrap.js"></script>-->
 <!--</head>-->
 <!--<body class="background-gray">-->
 
-    <div class="content-margin-padding">
-        <!--操作栏-->
-        <form class="form-inline" role="form">
-            <div class="row">
-                <div class="form-group col-sm-6">
-                    <label class="control-label">Search: </label>
-                    <input type="text" class="form-control" placeholder="请输入搜索内容"
-                           ng-model="queryVal" style="width: 100%">
-                </div>
-
-                <div class="form-group col-sm-6">
-                    <label class="control-label">Order By: </label>
-                    <select class="form-control" ng-model="orderProp" style="width: 100%;">
-                        <option value="-votes">进球数</option>
-                        <option value="name">姓 名</option>
-                    </select>
-                </div>
-            </div>
-        </form>
-
-        <div class="margin-top20">
-            <div class="row">
-                <a href="#/player/add" class="btn btn-primary">添加射手</a>
-                <a href="https://www.fifa.com/worldcup/statistics/players/goal-scored"
-                   class="btn btn-default">FIFA世界杯实时射手榜</a>
+<div class="content-margin-padding">
+    <!--操作栏-->
+    <form class="form-inline" role="form">
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label class="control-label">Search: </label>
+                <input type="text" class="form-control" placeholder="请输入搜索内容"
+                       ng-model="queryVal" style="width: 100%">
             </div>
 
-            <!--网络图片例子，来自fifa官网-->
-            <!--<img src="https://api.fifa.com/api/v1/picture/players/2018fwc/369419_sq-300_jpg?allowDefaultPicture=true" alt="暂无图片"-->
-                 <!--class="img-thumbnail img-size" style="margin-top: 10px">-->
-
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>头像</th>
-                            <th>姓名</th>
-                            <th>位置</th>
-                            <th>号码</th>
-                            <th>球队</th>
-                            <th>进球数</th>
-                            <th>操作</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr ng-repeat="player in players | filter: queryVal | orderBy: orderProp">
-                            <td>
-                                <img ng-src="static/img/players2/{{player.thumb}}" alt="暂无图片"
-                                     class="img-thumbnail img-size">
-                            </td>
-                            <td>
-                                <a href="#/player/view/{{player.id}}">{{player.name}}</a>
-                            </td>
-                            <td>{{player.position | posFilter}}</td>
-                            <td>{{player.num}}</td>
-                            <td>{{player.team}}</td>
-                            <td>{{player.votes}}</td>
-                            <td>
-                                <a href="#/player/edit/{{player.id}}">编辑</a>
-                                <a href="#" ng-click="removePlayer($event,player.id)">删除</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="form-group col-sm-6">
+                <label class="control-label">Order By: </label>
+                <select class="form-control" ng-model="orderProp" style="width: 100%;">
+                    <option value="-score">进球数</option>
+                    <option value="name">姓 名</option>
+                </select>
             </div>
+        </div>
+    </form>
 
+    <div class="margin-top20">
+        <div class="row">
+            <a href="#/player/add" class="btn btn-primary">添加射手</a>
+            <a href="https://www.fifa.com/worldcup/statistics/players/goal-scored"
+               class="btn btn-default">FIFA世界杯实时射手榜</a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>头像</th>
+                    <th>姓名</th>
+                    <th>位置</th>
+                    <th>号码</th>
+                    <th>球队</th>
+                    <th>进球数</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr ng-repeat="player in players | filter: queryVal | orderBy: orderProp">
+                    <td>
+                        <img ng-src="{{player.imgUrl}}" alt="暂无图片"
+                             class="img-thumbnail img-size">
+                    </td>
+                    <td>
+                        <a href="#/player/view/{{player.id}}">{{player.name}}</a>
+                    </td>
+                    <td>{{player.position | posFilter}}</td>
+                    <td>{{player.num}}</td>
+                    <td>{{player.team}}</td>
+                    <td>{{player.score}}</td>
+                    <td>
+                        <a href="#/player/edit/{{player.id}}">编辑</a>
+                        <a href="#" ng-click="removePlayer($event,player)">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 
 <!--</body>-->
 <!--<script src="../frame/angular-1.7.0/angular.js"></script>-->

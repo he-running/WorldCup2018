@@ -26,8 +26,9 @@ public class PlayerDaoImpl implements PlayerDao {
         ps.setString(4, player.getTeam());
         ps.setString(5, player.getScore());
         ps.setString(6, player.getImgUrl());
-
+        conn.setAutoCommit(false);
         ps.execute();
+        conn.commit();
     }
 
     @Override
@@ -43,17 +44,19 @@ public class PlayerDaoImpl implements PlayerDao {
         ps.setString(5, player.getScore());
         ps.setString(6, player.getImgUrl());
         ps.setString(7, String.valueOf(player.getId()));
-
+        conn.setAutoCommit(false);
         ps.execute();
+        conn.commit();
     }
 
     @Override
     public void delete(Connection conn, String id) throws SQLException {
-        StringBuffer sql = new StringBuffer("delete").append(" from").append(tb_name).append(" where id=?");
+        StringBuffer sql = new StringBuffer("delete").append(" from ").append(tb_name).append(" where id = ?");
         PreparedStatement ps = conn.prepareStatement(sql.toString());
         ps.setInt(1, Integer.parseInt(id));
-
+        conn.setAutoCommit(false);
         ps.execute();
+        conn.commit();
     }
 
     @Override

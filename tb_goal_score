@@ -1,0 +1,11 @@
+CREATE TABLE worldcup_db.tb_goal_score
+(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    name VARCHAR(30) NOT NULL COMMENT '姓名',
+    position VARCHAR(50) NOT NULL COMMENT '位置',
+    num VARCHAR(50) NOT NULL COMMENT '球衣号码',
+    team VARCHAR(50) NOT NULL COMMENT '国家队',
+    score VARCHAR(2) DEFAULT 0 NOT NULL COMMENT '进球数',
+    imgUrl VARCHAR(300) COMMENT '头像链接'
+);
+ALTER TABLE worldcup_db.tb_goal_score COMMENT = '世界杯射手榜';

@@ -9,13 +9,13 @@ import java.io.Serializable;
 
 public abstract class IdEntity implements Serializable{
 
-    protected int id;
+    protected String id;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 }
